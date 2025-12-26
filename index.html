@@ -1,0 +1,294 @@
+<!-- Admission for Editor — Blogger-ready with 5 full-frame slides -->
+<style>
+  :root{--deep-blue:#062a52;--deep-green:#0b5d2a;--accent:#c62828;}
+  .afe-container { font-family: Arial, Helvetica, sans-serif; color:#111; max-width:100%; box-sizing:border-box; }
+
+  /* TOP SCROLLING BAR */
+  .afe-topbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 16px;
+    background:var(--deep-blue); /* deep blue */
+    overflow:hidden;
+  }
+  .afe-marquee { flex:1; white-space:nowrap; overflow:hidden; min-width:0; }
+  .afe-marquee-track { display:inline-block; animation: slide-left 18s linear infinite; }
+  .afe-marquee span { color:#fff; font-size:18px; font-weight:700; padding-right:40px; display:inline-block; }
+  @keyframes slide-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .afe-contact { display:flex; align-items:center; gap:12px; margin-left:12px; flex-shrink:0; }
+  .afe-contact a { color:#fff; text-decoration:none; font-weight:600; }
+  .afe-btn { background:var(--accent); color:#fff; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:700; }
+
+  /* GREEN INFO BAR (below marquee) */
+  .afe-greenbar {
+    background:var(--deep-green);
+    color:#fff;
+    padding:16px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .afe-green-logo { width:120px; flex-shrink:0; }
+  .afe-green-logo img { max-width:100%; border-radius:6px; display:block; }
+  .afe-green-text { flex:1; min-height:60px; border:1px dashed rgba(255,255,255,0.35); padding:12px; color:#fff; }
+
+  /* SLIDER - full width, responsive, full-frame images */
+  .afe-slider {
+    position:relative;
+    width:100%;
+    height:60vh;              /* adjust height as needed */
+    min-height:360px;
+    overflow:hidden;
+    background:#000;
+  }
+  .afe-slide {
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:opacity .7s ease, transform .7s ease;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .afe-slide.active { opacity:1; z-index:2; }
+
+  .afe-slide img {
+    width:100%;
+    height:100%;
+    object-fit:cover; /* ensures full-frame cover */
+    display:block;
+    user-select:none;
+    pointer-events:none;
+  }
+
+  /* Arrows */
+  .afe-arrow {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.45);
+    color:#fff;
+    border:none;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    z-index:5;
+    backdrop-filter: blur(2px);
+  }
+  .afe-arrow:focus { outline:2px solid #fff; }
+  .afe-arrow.left { left:14px; }
+  .afe-arrow.right { right:14px; }
+
+  /* Dots */
+  .afe-dots {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:14px;
+    display:flex;
+    gap:8px;
+    z-index:6;
+  }
+  .afe-dot {
+    width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.45);cursor:pointer;border:1px solid rgba(0,0,0,0.15);
+  }
+  .afe-dot.active { background:#fff; }
+
+  /* INTRO + DESCRIPTION + Logo */
+  .afe-desc-wrap {
+    max-width:1100px;
+    margin:28px auto 48px;
+    padding:0 18px;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+  }
+  .afe-desc-area { flex:1; }
+  .afe-desc-title { font-size:22px; font-weight:700; margin-bottom:10px; }
+  .afe-desc {
+    border:1px solid #ddd; padding:18px; min-height:300px; border-radius:8px; background:#fff; color:#111;
+  }
+  .afe-logo { width:160px; flex-shrink:0; }
+  .afe-logo img { max-width:100%; border-radius:8px; display:block; }
+
+  /* small screens */
+  @media (max-width:900px){
+    .afe-desc-wrap { flex-direction:column; }
+    .afe-greenbar { padding:12px; }
+    .afe-green-logo { width:100px; }
+    .afe-slider { height:45vh; min-height:260px; }
+    .afe-marquee span { font-size:16px; }
+  }
+</style>
+
+<div class="afe-container">
+
+  <!-- TOP SCROLL -->
+  <div class="afe-topbar" role="region" aria-label="Admission header">
+    <div class="afe-marquee" aria-hidden="false">
+      <div class="afe-marquee-track" id="afeMarq">
+        <span>Admission for Editor — Admission for Editor — Admission for Editor —</span>
+        <span>Admission for Editor — Admission for Editor — Admission for Editor —</span>
+      </div>
+    </div>
+
+    <div class="afe-contact" aria-label="Contact and admission">
+      <a href="tel:+917601895132">+91 76018 95132</a>
+      <a href="tel:+919434894987">+91 94348 94987</a>
+      <a id="afeApplyBtn" class="afe-btn" href="#" title="Admission Open link">Admission Open</a>
+    </div>
+  </div>
+
+  <!-- GREEN INFO BAR -->
+  <div class="afe-greenbar" role="region" aria-label="Admission info">
+    <div class="afe-green-logo" aria-hidden="false">
+      <!-- আপনার লোগো (বাম দিকে) -->
+      <img src="https://via.placeholder.com/120x120?text=LOGO" alt="Logo">
+    </div>
+
+    <div class="afe-green-text" contenteditable="true" aria-label="Editable info text">
+      <!-- এখানে আপনি নিজের সাদা লেখা লিখবেন (এখানে ক্লিক করে সম্পাদনা করুন) -->
+      এখানে প্রয়োজনীয় তথ্য লিখুন...
+    </div>
+  </div>
+
+  <!-- SLIDER with 5 slides (replace src with your images) -->
+  <div class="afe-slider" id="afeSlider" aria-roledescription="carousel" aria-label="Admission photos">
+    <div class="afe-slide active" data-index="0">
+      <img src="https://via.placeholder.com/1600x900?text=Photo+1" alt="Photo 1">
+    </div>
+
+    <div class="afe-slide" data-index="1">
+      <img src="https://via.placeholder.com/1600x900?text=Photo+2" alt="Photo 2">
+    </div>
+
+    <div class="afe-slide" data-index="2">
+      <img src="https://via.placeholder.com/1600x900?text=Photo+3" alt="Photo 3">
+    </div>
+
+    <div class="afe-slide" data-index="3">
+      <img src="https://via.placeholder.com/1600x900?text=Photo+4" alt="Photo 4">
+    </div>
+
+    <div class="afe-slide" data-index="4">
+      <img src="https://via.placeholder.com/1600x900?text=Photo+5" alt="Photo 5">
+    </div>
+
+    <!-- arrows -->
+    <button class="afe-arrow left" aria-label="Previous slide" id="prevBtn">&#10094;</button>
+    <button class="afe-arrow right" aria-label="Next slide" id="nextBtn">&#10095;</button>
+
+    <!-- dots -->
+    <div class="afe-dots" id="afeDots" role="tablist" aria-label="Slide controls"></div>
+  </div>
+
+  <!-- INTRODUCTION + DESCRIPTION -->
+  <div class="afe-desc-wrap">
+    <div class="afe-desc-area">
+      <div class="afe-desc-title">Introduction</div>
+      <div class="afe-desc" id="afeDesc" contenteditable="true" aria-label="Description (editable)">
+        এখানে আপনার বিস্তারিত বিবরণ (কমপক্ষে ১০০০ অক্ষর) লিখুন...
+      </div>
+    </div>
+
+    <div class="afe-logo" aria-hidden="false">
+      <img src="https://via.placeholder.com/160x160?text=LOGO" alt="Logo">
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    const slider = document.getElementById('afeSlider');
+    const slides = Array.from(slider.querySelectorAll('.afe-slide'));
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('afeDots');
+    let current = 0;
+    let timer = null;
+    const INTERVAL = 4000;
+
+    // create dots
+    slides.forEach((s,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'afe-dot';
+      btn.setAttribute('aria-label', 'Go to slide ' + (i+1));
+      btn.type = 'button';
+      btn.addEventListener('click', ()=> { goTo(i); restartAuto(); });
+      dotsWrap.appendChild(btn);
+    });
+
+    const dots = Array.from(dotsWrap.querySelectorAll('.afe-dot'));
+    function updateDots(){ dots.forEach((d,i)=> d.classList.toggle('active', i===current)); }
+
+    function show(i){
+      slides.forEach((s,idx)=> s.classList.toggle('active', idx===i));
+      current = i;
+      updateDots();
+    }
+
+    function nextSlide(){ show((current+1) % slides.length); }
+    function prevSlide(){ show((current-1 + slides.length) % slides.length); }
+
+    // arrow handlers
+    next.addEventListener('click', ()=> { nextSlide(); restartAuto(); });
+    prev.addEventListener('click', ()=> { prevSlide(); restartAuto(); });
+
+    // keyboard support
+    document.addEventListener('keydown', (e)=> {
+      if (e.key === 'ArrowLeft') { prevSlide(); restartAuto(); }
+      if (e.key === 'ArrowRight') { nextSlide(); restartAuto(); }
+    });
+
+    // touch / swipe support
+    let startX = 0, endX = 0;
+    slider.addEventListener('touchstart', (e)=> { startX = e.touches[0].clientX; stopAuto(); }, {passive:true});
+    slider.addEventListener('touchmove', (e)=> { endX = e.touches[0].clientX; }, {passive:true});
+    slider.addEventListener('touchend', ()=> {
+      const diff = endX - startX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) nextSlide(); else prevSlide();
+      }
+      restartAuto();
+    });
+
+    // autoplay
+    function startAuto(){ timer = setInterval(nextSlide, INTERVAL); }
+    function stopAuto(){ if (timer) { clearInterval(timer); timer=null; } }
+    function restartAuto(){ stopAuto(); startAuto(); }
+
+    // pause on hover/focus
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+    slider.addEventListener('focusin', stopAuto);
+    slider.addEventListener('focusout', startAuto);
+
+    // init
+    show(0);
+    startAuto();
+
+    // expose a small API to change slide images easily (optional)
+    window.afeReplaceSlideImage = function(index, url, alt){
+      if (!slides[index]) return;
+      const img = slides[index].querySelector('img');
+      if (img) { img.src = url; if (alt) img.alt = alt; }
+    };
+
+    // Accessibility: set first dot active
+    updateDots();
+
+    // If user wants to pre-load images (optional)
+    // slides.forEach(s => {
+    //   const img = s.querySelector('img');
+    //   if (img) { const pre = new Image(); pre.src = img.src; }
+    // });
+  })();
+</script>
